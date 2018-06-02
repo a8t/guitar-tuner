@@ -165,9 +165,18 @@
       <line class="cls-10" x1="232.45" y1="58.48" x2="240.11" y2="56.37" />
       <line class="cls-11" x1="240.11" y1="47.05" x2="232.45" y2="49.02" />
     </g>
-    <circle class="cls-12" cx="179.26" cy="80.99" r="9.32" />
-    <circle class="cls-13" cx="236.28" cy="80.99" r="9.32" />
-    <circle class="cls-14" cx="122.01" cy="80.99" r="9.32" />
+    <circle
+      class="cls-12"
+      v-bind:class="{'half-opacity': !(isMicListening && this.distanceInCents <= 1 && this.distanceInCents >= -1)}"
+      id="inTuneLight" cx="179.26" cy="80.99" r="9.32" />
+    <circle
+      class="cls-13"
+      v-bind:class="{'half-opacity': !(isMicListening && this.distanceInCents > 1)}"
+      id="sharpLight" cx="236.28" cy="80.99" r="9.32" />
+    <circle
+      class="cls-14"
+      v-bind:class="{'half-opacity': !(isMicListening && this.distanceInCents < -1)}"
+      id="flatLight" cx="122.01" cy="80.99" r="9.32" />
     <g
       id="powerButtonGroup"
       @click="toggleMicrophone"
@@ -233,6 +242,7 @@
       x2="179.24"
       y2="123.75"
       v-bind:transform="needleTransform"
+      v-bind:class="{hide: !isMicListening}"
     />
     <polygon class="cls-52" points="176.51 115.99 179.22 120.31 181.78 115.99 176.51 115.99"
     />
@@ -251,9 +261,9 @@
     <path class="cls-54" d="M327.72,373.37c-15.32-14.73-16-15.12-31.55-25" transform="translate(-40.74 -209.83)"
     />
     <g id="soundButtonGroup">
-      <rect id="powerButtonShadow-2" data-name="powerButtonShadow" class="cls-15" x="233.19"
+      <rect id="soundButtonShadow" data-name="powerButtonShadow" class="cls-15" x="233.19"
         y="241.87" width="37.57" height="14.55" rx="7.28" ry="7.28" />
-      <rect id="powerButton-2" data-name="powerButton" class="cls-55" x="231.58" y="239.87"
+      <rect id="soundButton" data-name="powerButton" class="cls-55" x="231.58" y="239.87"
         width="37.57" height="14.55" rx="7.28" ry="7.28" />
     </g>
     <g>
@@ -339,6 +349,22 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style scoped>
+#powerButton {
+  cursor: pointer;
+}
+
+#soundButton {
+  cursor: not-allowed;
+}
+
+.half-opacity {
+  opacity: 0.3;
+}
+
+.hide {
+  opacity: 0;
+}
+
 .cls-1,
 .cls-51 {
   stroke: #231f20;
