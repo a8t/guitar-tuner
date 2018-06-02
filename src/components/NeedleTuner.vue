@@ -187,6 +187,10 @@
       rx="7.03" ry="7.03" />
     <rect id="display" class="cls-18" x="62.09" y="105.98" width="235.7" height="99.08"
       rx="7.03" ry="7.03" />
+
+    <text x="68.09" y="120.98">
+      {{this.nearestNote}}
+    </text>
     <g id="holes">
       <circle class="cls-19" cx="462.43" cy="122.13" r="4.99" />
       <circle class="cls-20" cx="377.43" cy="122.13" r="4.99" />
@@ -286,7 +290,7 @@ export default {
     return {
       tuner: new TunerAudioContext(),
       distanceInCents: 0,
-      nearestNote: 'C',
+      nearestNote: '',
       isMicListening: false,
     };
   },
@@ -301,10 +305,13 @@ export default {
   methods: {
     updateNoteAndDistance: function() {
       const detectedFundamental = this.tuner.getDetectedFundamental();
-      this.nearestNote = TunerAudioContext.nearestNoteFromFreq(detectedFundamental);
+      const [nearestNote, nearestNoteFreq] = TunerAudioContext.nearestNoteFromFreq(
+        detectedFundamental,
+      );
+      this.nearestNote = nearestNote.replace(/[0-9]/g, '');
       this.distanceInCents =
         TunerAudioContext.distanceinCents({
-          referenceFreq: this.nearestNote[1],
+          referenceFreq: nearestNoteFreq,
           checkFreq: detectedFundamental,
         }) || 0;
       if (this.isMicListening) {
@@ -316,6 +323,7 @@ export default {
         requestAnimationFrame(() => {
           this.tuner.disconnectMicrophone();
           this.distanceInCents = 0;
+          this.nearestNote = '';
           this.$forceUpdate();
         });
       } else {
