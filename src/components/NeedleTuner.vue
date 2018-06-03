@@ -292,55 +292,14 @@
 </template>
 
 <script>
-import TunerAudioContext from '../assets/TunerAudioContext';
+import tunerMixin from '@/assets/tunerMixin';
 
 export default {
   name: 'NeedleTuner',
-  data() {
-    return {
-      tuner: new TunerAudioContext(),
-      distanceInCents: 0,
-      nearestNote: '',
-      isMicListening: false,
-    };
-  },
+  mixins: [tunerMixin],
   computed: {
     needleTransform: function() {
       return `rotate(${this.distanceInCents} 179.24 201.58)`;
-    },
-  },
-  destroyed() {
-    cancelAnimationFrame(this.updateNoteAndDistance);
-  },
-  methods: {
-    updateNoteAndDistance: function() {
-      const detectedFundamental = this.tuner.getDetectedFundamental();
-      const [nearestNote, nearestNoteFreq] = TunerAudioContext.nearestNoteFromFreq(
-        detectedFundamental,
-      );
-      this.nearestNote = nearestNote.replace(/[0-9]/g, '');
-      this.distanceInCents =
-        TunerAudioContext.distanceinCents({
-          referenceFreq: nearestNoteFreq,
-          checkFreq: detectedFundamental,
-        }) || 0;
-      if (this.isMicListening) {
-        requestAnimationFrame(this.updateNoteAndDistance);
-      }
-    },
-    toggleMicrophone: function() {
-      if (this.isMicListening) {
-        requestAnimationFrame(() => {
-          this.tuner.disconnectMicrophone();
-          this.distanceInCents = 0;
-          this.nearestNote = '';
-          this.$forceUpdate();
-        });
-      } else {
-        requestAnimationFrame(this.updateNoteAndDistance);
-        this.tuner.connectMicrophone();
-      }
-      this.isMicListening = !this.isMicListening;
     },
   },
 };
