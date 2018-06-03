@@ -1,17 +1,18 @@
 import noteToPitchJSON from '../assets/noteToPitch.json';
 import monkeypatch from '../assets/monkeypatch';
 
-monkeypatch(window);
-
 export default class TunerAudioContext {
   constructor() {
+    // monkeypatch returns true if any of the patches had to be applied
+    const patched = monkeypatch(window);
+
     this.audioContext = new AudioContext();
 
     this.filterNode = this.audioContext.createBiquadFilter();
     this.filterNode.type = 'lowpass';
 
     this.analyserNode = this.audioContext.createAnalyser();
-    this.analyserNode.fftSize = 2048;
+    this.analyserNode.fftSize = patched ? 2048 : 8192;
 
     this.gainNode = this.audioContext.createGain();
     this.gainNode.gain.value = 0;

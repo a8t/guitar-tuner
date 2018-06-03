@@ -58,7 +58,10 @@ export default function(global, exports, perf) {
     if (!param.setTargetAtTime) param.setTargetAtTime = param.setTargetValueAtTime;
   }
 
+  let patched = false;
+
   if (window.hasOwnProperty('webkitAudioContext') && !window.hasOwnProperty('AudioContext')) {
+    patched = true;
     window.AudioContext = webkitAudioContext;
 
     if (!AudioContext.prototype.hasOwnProperty('createGain')) {
@@ -178,6 +181,9 @@ export default function(global, exports, perf) {
     window.hasOwnProperty('webkitOfflineAudioContext') &&
     !window.hasOwnProperty('OfflineAudioContext')
   ) {
+    patched = true;
     window.OfflineAudioContext = webkitOfflineAudioContext;
   }
+
+  return patched;
 }
