@@ -23,6 +23,7 @@ export default class TunerAudioContext {
   }
 
   connectMicrophone() {
+    this.audioContext.resume();
     navigator.mediaDevices.getUserMedia({ audio: true }).then(
       stream => {
         this.microphoneNode = this.audioContext.createMediaStreamSource(stream);
@@ -35,6 +36,7 @@ export default class TunerAudioContext {
 
   disconnectMicrophone() {
     this.microphoneNode.disconnect();
+    this.audioContext.suspend();
   }
 
   getDetectedFundamental() {
