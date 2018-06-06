@@ -292,7 +292,7 @@
 </template>
 
 <script>
-import tunerMixin from '@/assets/tunerMixin';
+import tunerMixin from '@/components/mixins/tunerMixin';
 
 export default {
   name: 'NeedleTuner',
