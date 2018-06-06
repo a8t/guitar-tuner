@@ -6,6 +6,10 @@ export default class TunerAudioContext {
     // monkeypatch returns true if any of the patches had to be applied
     const patched = monkeypatch(window);
 
+    if (!window.hasOwnProperty('AudioContext')) {
+      return;
+    }
+
     this.audioContext = new AudioContext();
 
     this.filterNode = this.audioContext.createBiquadFilter();
@@ -30,7 +34,7 @@ export default class TunerAudioContext {
         this.microphoneNode.connect(this.filterNode);
       },
       // eslint-disable-next-line
-      error => console.log(error),
+      error => console.log(error)
     );
   }
 
@@ -48,7 +52,7 @@ export default class TunerAudioContext {
     return TunerAudioContext.getInferredPeakFreq(
       this.audioContext,
       freqDomain.length,
-      inferredPeakIndex,
+      inferredPeakIndex
     );
   }
 
@@ -76,7 +80,7 @@ export default class TunerAudioContext {
 
   static nearestNoteFromFreq(freq) {
     return Object.entries(noteToPitchJSON).reduce(
-      (prev, curr) => (Math.abs(curr[1] - freq) < Math.abs(prev[1] - freq) ? curr : prev),
+      (prev, curr) => (Math.abs(curr[1] - freq) < Math.abs(prev[1] - freq) ? curr : prev)
     );
   }
 
