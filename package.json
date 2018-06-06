@@ -13,13 +13,13 @@
     "lint": "eslint --ext .js,.vue src test/unit",
     "build": "node build/build.js && npm run pages",
     "pages": "gh-pages -d dist"
-
   },
   "dependencies": {
     "gh-pages": "^1.2.0",
     "https": "^1.0.0",
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "web-audio-test-api": "^0.5.2"
   },
   "devDependencies": {
     "@vue/test-utils": "^1.0.0-beta.16",

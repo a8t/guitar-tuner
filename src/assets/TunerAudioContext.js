@@ -4,11 +4,7 @@ import monkeypatch from '../assets/monkeypatch';
 export default class TunerAudioContext {
   constructor() {
     // monkeypatch returns true if any of the patches had to be applied
-    const patched = monkeypatch(window);
-
-    if (!window.hasOwnProperty('AudioContext')) {
-      return;
-    }
+    monkeypatch(window);
 
     this.audioContext = new AudioContext();
 
@@ -16,7 +12,13 @@ export default class TunerAudioContext {
     this.filterNode.type = 'lowpass';
 
     this.analyserNode = this.audioContext.createAnalyser();
-    this.analyserNode.fftSize = patched ? 2048 : 8192;
+    this.analyserNode.fftSize = 2048;
+    try {
+      // fftSize must be a power of 2. Not all browsers support higher than 2048 bins
+      this.analyserNode.fftSize = 8192;
+    } catch (error) {
+      console.log(error);
+    }
 
     this.gainNode = this.audioContext.createGain();
     this.gainNode.gain.value = 0;
@@ -39,7 +41,9 @@ export default class TunerAudioContext {
   }
 
   disconnectMicrophone() {
-    this.microphoneNode.disconnect();
+    if (this.microphoneNode) {
+      this.microphoneNode.disconnect();
+    }
     this.audioContext.suspend();
   }
 
