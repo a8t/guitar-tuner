@@ -6,7 +6,9 @@ import TunerAudioContext from '@/assets/TunerAudioContext';
 import NeedleTuner from '@/components/NeedleTuner.vue';
 
 describe('Needle tuner', () => {
-  console.log = jest.fn(); // Suppress console.log
+  // Suppress console.log
+  console.log = jest.fn();
+
   // Allow suspend and resume functionalities
   WebAudioTestAPI.setState({
     'AudioContext#suspend': 'enabled',
@@ -17,7 +19,7 @@ describe('Needle tuner', () => {
     expect(NeedleTuner.mixins.length).toBe(1);
   });
 
-  describe('Computed properties', () => {
+  describe('Instance tests', () => {
     const nt = new Vue(NeedleTuner).$mount();
     it('computes needleTransform correctly', () => {
       nt.distanceInCents = 50;

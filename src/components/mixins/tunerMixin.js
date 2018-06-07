@@ -15,10 +15,9 @@ export default {
   methods: {
     updateNoteAndDistance: function() {
       const detectedFundamental = this.tuner.getDetectedFundamental();
-      const [
-        nearestNote,
-        nearestNoteFreq,
-      ] = TunerAudioContext.nearestNoteFromFreq(detectedFundamental);
+      const [nearestNote, nearestNoteFreq] = TunerAudioContext.nearestNoteFromFreq(
+        detectedFundamental
+      );
 
       this.nearestNote = nearestNote.replace(/[0-9]/g, '');
       this.distanceInCents =
