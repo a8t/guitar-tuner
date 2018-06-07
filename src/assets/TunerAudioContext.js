@@ -88,7 +88,7 @@ export default class TunerAudioContext {
     );
   }
 
-  static distanceinCents({ referenceFreq = 0, checkFreq = 0 }) {
+  static distanceInCents({ referenceFreq = 0, checkFreq = 0 }) {
     return 1200 * Math.log(checkFreq / referenceFreq) / Math.log(2);
   }
 }
