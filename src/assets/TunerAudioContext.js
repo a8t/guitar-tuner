@@ -26,12 +26,15 @@ export default class TunerAudioContext {
     this.filterNode.connect(this.analyserNode);
     this.analyserNode.connect(this.gainNode);
     this.gainNode.connect(this.audioContext.destination);
+
+    this.isMicrophoneConnected = false;
   }
 
   connectMicrophone() {
     this.audioContext.resume();
     navigator.mediaDevices.getUserMedia({ audio: true }).then(
       stream => {
+        this.isMicrophoneConnected = true;
         this.microphoneNode = this.audioContext.createMediaStreamSource(stream);
         this.microphoneNode.connect(this.filterNode);
       },
@@ -41,8 +44,9 @@ export default class TunerAudioContext {
   }
 
   disconnectMicrophone() {
-    if (this.microphoneNode) {
+    if (this.microphoneNode && this.isMicrophoneConnected) {
       this.microphoneNode.disconnect();
+      this.isMicrophoneConnected = false;
     }
     this.audioContext.suspend();
   }
