@@ -5,11 +5,11 @@ import NeedleTuner from '@/components/NeedleTuner'
 Vue.use(Router)
 
 export default new Router({
-    routes: [
-        {
-            path: '/',
-            name: 'NeedleTuner',
-            component: NeedleTuner,
-        },
-    ],
+  routes: [
+    {
+      path: '/',
+      name: 'NeedleTuner',
+      component: NeedleTuner,
+    },
+  ],
 })
