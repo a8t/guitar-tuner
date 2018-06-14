@@ -292,16 +292,16 @@
 </template>
 
 <script>
-import tunerMixin from '@/components/mixins/tunerMixin';
+import tunerMixin from "@/components/mixins/tunerMixin";
 
 export default {
-  name: 'NeedleTuner',
+  name: "NeedleTuner",
   mixins: [tunerMixin],
   computed: {
     needleTransform: function() {
       return `rotate(${this.distanceInCents} 179.24 201.58)`;
-    },
-  },
+    }
+  }
 };
 </script>
 
