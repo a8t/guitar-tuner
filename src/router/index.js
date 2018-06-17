@@ -8,6 +8,10 @@ export default new Router({
   routes: [
     {
       path: '/',
+      redirect: 'tuner',
+    },
+    {
+      path: '/tuner',
       name: 'Tuner Page',
       component: TunerPage,
     },

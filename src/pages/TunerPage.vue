@@ -29,6 +29,6 @@ export default {
 }
 
 .tuner-provider {
-  margin-top: auto;
+  height: 100%;
 }
 </style>
