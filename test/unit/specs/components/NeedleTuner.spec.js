@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import 'web-audio-test-api'
-import NeedleTuner from '@/components/NeedleTuner'
+import NeedleTuner from '@/components/Tuner/NeedleTuner'
 
 describe('Needle tuner', () => {
   // Allow suspend and resume functionalities
