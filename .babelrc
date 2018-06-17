@@ -11,15 +11,21 @@
     ],
     "stage-2"
   ],
-  "plugins": ["transform-vue-jsx", "transform-runtime"],
+  "plugins": [
+    "transform-vue-jsx",
+    "transform-runtime",
+    [
+      "import",
+      {
+        "libraryName": "at",
+        "libraryDirectory": "src/components"
+      }
+    ]
+  ],
   "env": {
     "test": {
       "presets": ["env", "stage-2"],
-      "plugins": [
-        "transform-vue-jsx",
-        "transform-es2015-modules-commonjs",
-        "dynamic-import-node"
-      ]
+      "plugins": ["transform-vue-jsx", "transform-es2015-modules-commonjs", "dynamic-import-node"]
     }
   }
 }
