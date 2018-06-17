@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import NeedleTuner from '@/components/NeedleTuner'
+import TunerPage from '@/pages/TunerPage'
 
 Vue.use(Router)
 
@@ -8,8 +8,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'NeedleTuner',
-      component: NeedleTuner,
+      name: 'Tuner Page',
+      component: TunerPage,
     },
   ],
 })
