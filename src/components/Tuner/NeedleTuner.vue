@@ -48,6 +48,7 @@ export default {
 
 .needle-display {
   margin-top: auto;
+  width: 80vw;
   max-width: 600px;
 }
 
