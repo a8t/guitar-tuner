@@ -17,6 +17,9 @@ import 'at-ui-style'
 
 export default {
   name: 'App',
+  created: function() {
+    window.scrollTo(0, 1)
+  },
 }
 </script>
 
@@ -37,6 +40,7 @@ body {
 }
 
 .header {
+  z-index: 1000;
   background: #6fcf97;
   position: fixed;
   top: 0;
