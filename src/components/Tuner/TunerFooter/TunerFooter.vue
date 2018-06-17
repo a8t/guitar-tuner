@@ -5,7 +5,9 @@
       Tuner mode
     </h3>
 
-    <TunerMode icon="needle" label="Needle" />
+    <div class="tuner-modes">
+      <TunerMode icon="needle" label="Needle" />
+    </div>
 
   </footer>
 </template>
@@ -49,5 +51,9 @@ footer {
   position: absolute;
   right: 0;
   top: 10px;
+}
+
+.tuner-modes {
+  margin: 20px 0;
 }
 </style>
