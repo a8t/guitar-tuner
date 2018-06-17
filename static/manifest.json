@@ -1,0 +1,9 @@
+{
+  "name": "WebTuner",
+  "short_name": "WebTuner",
+  "start_url": "/",
+  "display": "fullscreen",
+  "orientation": "portrait",
+  "background_color": "#6fcf97",
+  "theme_color": "#6fcf97"
+}
