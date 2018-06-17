@@ -1,9 +1,11 @@
 <template>
 
   <footer>
-    <h3 class="footer-title">
-      Tuner mode
-    </h3>
+    <div class="footer-title">
+      <h3>
+        Tuner mode
+      </h3>
+    </div>
 
     <div class="tuner-modes">
       <TunerMode icon="needle" label="Needle" />
@@ -28,12 +30,18 @@ footer {
 }
 
 .footer-title {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100px;
+}
+
+.footer-title h3 {
   color: #666;
 }
 
 .footer-title::before {
   position: absolute;
-  width: 40vw;
+  width: calc(50vw - 60px);
   content: '';
   background: #999;
   height: 2px;
@@ -44,7 +52,7 @@ footer {
 
 .footer-title::after {
   position: absolute;
-  width: 40vw;
+  width: calc(50vw - 60px);
   content: '';
   background: #999;
   height: 2px;
