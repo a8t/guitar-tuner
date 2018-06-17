@@ -9,10 +9,6 @@ describe('Needle tuner', () => {
     'AudioContext#resume': 'enabled',
   })
 
-  it('has one mixin', () => {
-    expect(NeedleTuner.mixins.length).toBe(1)
-  })
-
   describe('Instance tests', () => {
     const nt = new Vue(NeedleTuner).$mount()
     it('computes needleTransform correctly', () => {
