@@ -26,7 +26,7 @@ export default {
 
 <style>
 body {
-  height: unset;
+  height: unset !important;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
