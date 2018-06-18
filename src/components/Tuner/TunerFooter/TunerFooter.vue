@@ -1,5 +1,4 @@
 <template>
-
   <footer>
     <div class="footer-title">
       <h3>
@@ -8,18 +7,21 @@
     </div>
 
     <div class="tuner-modes">
-      <TunerMode icon="needle" label="Needle" />
+      <TunerMode url="/tuner/needle-tuner" label="Needle">
+        <Needle/>
+      </TunerMode>
     </div>
 
   </footer>
 </template>
 
 <script>
+import Needle from '@/components/icons/NeedleIcon'
 import TunerMode from './TunerMode'
 
 export default {
   name: 'TunerFooter',
-  components: { TunerMode },
+  components: { TunerMode, Needle },
 }
 </script>
 

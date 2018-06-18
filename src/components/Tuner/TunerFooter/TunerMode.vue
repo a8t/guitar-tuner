@@ -1,28 +1,30 @@
 <template>
   <div class="mode-container">
-    <img :src="require(`@/assets/icons/${icon}.svg`)" alt="">
-    <p class="label">
-      {{label}}
-    </p>
+    <router-link :to="url">
+      <slot></slot>
+      <p class="label">
+        {{label}}
+      </p>
+    </router-link>
   </div>
 </template>
 
 <script>
 export default {
   name: 'TunerMode',
-  props: { icon: String, alt: String, label: String },
+  props: { label: String, url: String },
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .mode-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
 
-img {
-  width: 45px;
+  & .router-link-active .label {
+    color: var(--primary);
+  }
 }
 </style>
