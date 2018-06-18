@@ -35,6 +35,7 @@ export default {
   mounted() {
     this.startStopListener = event => {
       if (event.key === 'Space' || event.code === 'Space') {
+        event.preventDefault()
         this.toggleMicrophone()
       }
     }
