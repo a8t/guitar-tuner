@@ -9,12 +9,12 @@ export default new Router({
   routes: [
     {
       path: '/tuner',
-      name: 'Tuner Page',
       component: TunerPage,
       children: [
         {
           path: '',
           redirect: 'needle-tuner',
+          name: 'Needle Tuner',
         },
         {
           path: 'needle-tuner',
