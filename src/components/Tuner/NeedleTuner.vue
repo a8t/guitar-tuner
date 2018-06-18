@@ -55,6 +55,7 @@ export default {
 .note-display {
   height: 80px;
   font-size: 60px;
+  margin-bottom: auto;
 }
 
 .mic-toggle {
