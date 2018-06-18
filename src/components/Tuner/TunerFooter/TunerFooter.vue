@@ -27,6 +27,7 @@ export default {
 
 <style scoped>
 footer {
+  --title-width: 100;
   margin-top: auto;
   position: relative;
 }
@@ -34,7 +35,7 @@ footer {
 .footer-title {
   margin-left: auto;
   margin-right: auto;
-  width: 100px;
+  width: calc(var(--title-width) * 1px);
 }
 
 .footer-title h3 {
@@ -43,7 +44,7 @@ footer {
 
 .footer-title::before {
   position: absolute;
-  width: calc(50vw - 60px);
+  width: calc(50vw - var(--title-width) * 0.5px - 10px);
   content: '';
   background: #999;
   height: 2px;
@@ -54,7 +55,7 @@ footer {
 
 .footer-title::after {
   position: absolute;
-  width: calc(50vw - 60px);
+  width: calc(50vw - var(--title-width) * 0.5px - 10px);
   content: '';
   background: #999;
   height: 2px;

@@ -21,15 +21,16 @@ export default {
 
 <style scoped>
 .tunerpage-root {
-  height: calc(100vh - 50px);
+  height: calc(100vh - var(--header-height) * 1px);
   display: flex;
   flex-direction: column;
   position: relative;
-  overflow: hidden;
+  overflow: scroll;
   background: var(--primary-bg);
 }
 
 .tuner-provider {
+  margin-top: var(--header-height) * 1px;
   height: 100%;
   z-index: 3;
 }
