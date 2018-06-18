@@ -14,6 +14,7 @@
 <script>
 // eslint-disable-next-line
 import 'at-ui-style'
+import '@/assets/styles/vars.css'
 
 export default {
   name: 'App',
@@ -41,7 +42,7 @@ body {
 
 .header {
   z-index: 1000;
-  background: #6fcf97;
+  background: var(--primary);
   position: fixed;
   top: 0;
   height: 50px;
