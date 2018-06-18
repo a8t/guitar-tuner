@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     handleToggleClick: function(e) {
-      e.target.blur()
+      e.currentTarget.blur()
       this.toggleMicrophone()
     },
   },
