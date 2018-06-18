@@ -1,13 +1,14 @@
 <template>
   <div>
-    <NeedleTuner v-bind="{nearestNote, distanceInCents, isMicListening, toggleMicrophone}" />
+    <NeedleTuner v-bind="{nearestNote, distanceInCents, isMicListening, toggleMicrophone}"
+    />
   </div>
 </template>
 
 <script>
 import tunerMixin from '@/components/mixins/tunerMixin'
-import NeedleTuner from '@/components/Tuner/NeedleTuner'
-import NeedleDisplay from '@/components/Tuner/NeedleDisplay'
+import NeedleTuner from '@/components/Tuner/NeedleTuner/NeedleTuner'
+import NeedleDisplay from '@/components/Tuner/NeedleTuner/NeedleDisplay'
 
 export default {
   name: 'TunerProvider',

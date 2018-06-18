@@ -6,7 +6,6 @@
 </template>
 
 <script>
-import NeedleTuner from '@/components/Tuner/NeedleTuner'
 import TunerProvider from '@/components/Tuner/TunerProvider'
 import TunerFooter from '@/components/Tuner/TunerFooter/TunerFooter'
 
@@ -15,7 +14,6 @@ export default {
   computed: {},
   components: {
     TunerProvider,
-    NeedleTuner,
     TunerFooter,
   },
 }
@@ -26,9 +24,13 @@ export default {
   height: calc(100vh - 50px);
   display: flex;
   flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  background: var(--primary-bg);
 }
 
 .tuner-provider {
   height: 100%;
+  z-index: 3;
 }
 </style>

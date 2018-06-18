@@ -17,7 +17,8 @@
     <line x1="195.29" y1="104.94" x2="207.86" y2="104.94" />
     <line x1="38.21" y1="40.47" x2="29.16" y2="31.74" />
     <line x1="12.58" y1="105.53" x2="0.01" y2="105.75" />
-    <line v-bind:transform="needleTransform" x1="103.93" y1="105.53" x2="103.93" y2="18.82" />
+    <line id="needle" :class="{hidden: !isMicListening}" :transform="needleTransform"
+      x1="103.93" y1="105.53" x2="103.93" y2="18.82" />
   </svg>
 </template>
 
@@ -37,12 +38,18 @@ export default {
 }
 </script>
 
-<style scoped>
-svg > line,
-svg > polyline {
+<style lang="scss" scoped>
+svg > line {
   fill: none;
   stroke: #231f20;
   stroke-miterlimit: 10;
   stroke-linecap: round;
+}
+
+#needle {
+  transition: transform 0.2s ease-in-out;
+  &.hidden {
+    display: none;
+  }
 }
 </style>
