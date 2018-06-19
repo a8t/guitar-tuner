@@ -7,10 +7,15 @@
     </div>
 
     <div class="tuner-modes">
-      <TunerMode url="/tuner/needle-tuner"
+      <tuner-mode url="/tuner/needle-tuner"
         label="Needle">
         <Needle/>
-      </TunerMode>
+      </tuner-mode>
+
+      <tuner-mode url="/tuner/strobe-tuner"
+        label="Strobe">
+        <Strobe/>
+      </tuner-mode>
     </div>
 
   </footer>
@@ -18,15 +23,16 @@
 
 <script>
 import Needle from '@/components/icons/NeedleIcon'
+import Strobe from '@/components/icons/StrobeIcon'
 import TunerMode from './TunerMode'
 
 export default {
   name: 'TunerFooter',
-  components: { TunerMode, Needle },
+  components: { TunerMode, Needle, Strobe },
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 footer {
   --title-width: 100;
   margin-top: auto;
@@ -67,5 +73,13 @@ footer {
 
 .tuner-modes {
   margin: 20px 0;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: flex-end;
+
+  & > * {
+    margin: 10px;
+  }
 }
 </style>
