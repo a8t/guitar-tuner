@@ -22,7 +22,7 @@
           </p>
         </Button>
         <p class="mic-toggle--secondary">
-          (or Spacebar)
+          (or press spacebar)
         </p>
       </div>
 
@@ -136,6 +136,7 @@ export default {
 
 .mic-toggle--secondary {
   font-size: 18px;
+  margin-top: 5px;
 }
 
 .needle-recording-indicator {
