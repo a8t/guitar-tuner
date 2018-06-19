@@ -20,6 +20,10 @@ export default class TunerAudioContext {
       console.error(error)
     }
 
+    this.osc = this.audioContext.createOscillator()
+    this.osc.frequency.setValueAtTime(440, this.audioContext.currentTime)
+    this.osc.connect(this.filterNode)
+
     this.gainNode = this.audioContext.createGain()
     this.gainNode.gain.value = 0
 
@@ -28,6 +32,10 @@ export default class TunerAudioContext {
     this.gainNode.connect(this.audioContext.destination)
 
     this.isMicrophoneConnected = false
+  }
+
+  startOscillator() {
+    this.osc.start()
   }
 
   connectMicrophone() {
