@@ -7,7 +7,8 @@
     </div>
 
     <div class="tuner-modes">
-      <TunerMode url="/tuner/needle-tuner" label="Needle">
+      <TunerMode url="/tuner/needle-tuner"
+        label="Needle">
         <Needle/>
       </TunerMode>
     </div>
