@@ -2,22 +2,37 @@
   <div class="container">
 
     <div class="needle-tuner">
-      <NeedleDisplay class="needle-display" v-bind="{distanceInCents, isMicListening}"
-      />
+      <NeedleDisplay class="needle-display"
+        v-bind="{distanceInCents, isMicListening}" />
       <div class="note-display">
         {{nearestNote}}
       </div>
 
-      <Button id="toggleButton" type="primary" size="large" class="mic-toggle"
-        @click="handleToggleClick">
-        {{isMicListening ? 'Stop / Spacebar' : 'Start / Spacebar'}}
-      </Button>
+      <recording-indicator class="needle-recording-indicator"
+        :on="isMicListening" />
+      <div>
+
+        <Button id="toggleButton"
+          type="primary"
+          size="large"
+          class="mic-toggle"
+          @click="handleToggleClick">
+          <p class="mic-toggle--primary">
+            {{isMicListening ? 'Stop': 'Start'}}
+          </p>
+        </Button>
+        <p class="mic-toggle--secondary">
+          (or Spacebar)
+        </p>
+      </div>
+
     </div>
   </div>
 </template>
 
 <script>
 import NeedleDisplay from '@/components/Tuner/NeedleTuner/NeedleDisplay'
+import RecordingIndicator from '@/components/shared/RecordingIndicator'
 import { Button } from 'at-ui'
 
 export default {
@@ -25,6 +40,7 @@ export default {
   components: {
     NeedleDisplay,
     Button,
+    RecordingIndicator,
   },
   props: {
     nearestNote: String,
@@ -77,8 +93,11 @@ export default {
   background: var(--primary-bg);
   padding: 10px;
   border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-  @media screen and (min-width: 900px) and (min-height: 520px) {
+  @media screen and (min-width: 900px) and (min-height: 650px) {
     & {
       position: relative;
       width: 80vw;
@@ -100,7 +119,8 @@ export default {
 }
 
 .note-display {
-  height: 80px;
+  min-width: 1px;
+  min-height: 90px;
   font-size: 60px;
   margin-top: 20px;
   margin-bottom: auto;
@@ -108,5 +128,19 @@ export default {
 
 .mic-toggle {
   margin-top: 30px;
+  p {
+    font-size: 24px;
+    color: white;
+  }
+}
+
+.mic-toggle--secondary {
+  font-size: 18px;
+}
+
+.needle-recording-indicator {
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
 </style>
