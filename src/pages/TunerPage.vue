@@ -21,11 +21,10 @@ export default {
 
 <style scoped>
 .tunerpage-root {
+  min-height: 600px;
   height: calc(100vh - var(--header-height) * 1px);
   display: flex;
   flex-direction: column;
-  position: relative;
-  overflow: scroll;
   background: var(--primary-bg);
 }
 

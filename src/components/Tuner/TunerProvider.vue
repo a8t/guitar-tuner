@@ -1,8 +1,6 @@
 <template>
-  <div>
-    <NeedleTuner v-bind="{nearestNote, distanceInCents, isMicListening, toggleMicrophone}"
-    />
-  </div>
+  <router-view v-bind="{nearestNote, distanceInCents, isMicListening, toggleMicrophone}"
+  />
 </template>
 
 <script>
