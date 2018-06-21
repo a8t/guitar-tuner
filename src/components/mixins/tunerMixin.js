@@ -21,11 +21,10 @@ export default {
       ] = TunerAudioContext.nearestNoteFromFreq(detectedFundamental)
 
       this.nearestNote = nearestNote.replace(/[0-9]/g, '')
-      this.distanceInCents =
-        TunerAudioContext.distanceInCents({
-          referenceFreq: nearestNoteFreq,
-          checkFreq: detectedFundamental,
-        }) || 0
+      this.distanceInCents = TunerAudioContext.distanceInCents({
+        referenceFreq: nearestNoteFreq,
+        checkFreq: detectedFundamental,
+      })
 
       if (this.isMicListening) {
         requestAnimationFrame(this.updateNoteAndDistance)

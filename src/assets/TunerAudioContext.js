@@ -47,7 +47,7 @@ export default class TunerAudioContext {
         this.microphoneNode.connect(this.filterNode)
       },
       // eslint-disable-next-line
-      error => console.error(error)
+      error => console.error(error),
     )
   }
 
@@ -66,12 +66,12 @@ export default class TunerAudioContext {
     const indexOfPeak = TunerAudioContext.getPeakIndex(freqDomain)
     const inferredPeakIndex = TunerAudioContext.gaussianInterpolation(
       indexOfPeak,
-      freqDomain
+      freqDomain,
     )
     return TunerAudioContext.getInferredPeakFreq(
       this.audioContext,
       freqDomain.length,
-      inferredPeakIndex
+      inferredPeakIndex,
     )
   }
 
@@ -98,10 +98,12 @@ export default class TunerAudioContext {
   }
 
   static nearestNoteFromFreq(freq) {
-    return Object.entries(noteToPitchJSON).reduce(
-      (prev, curr) =>
-        Math.abs(curr[1] - freq) < Math.abs(prev[1] - freq) ? curr : prev
-    )
+    const compare = (prev, curr) => {
+      return Math.abs(curr[1] - freq) < Math.abs(prev[1] - freq) ? curr : prev
+    }
+    return isNaN(freq)
+      ? ['', NaN]
+      : Object.entries(noteToPitchJSON).reduce(compare)
   }
 
   static distanceInCents({ referenceFreq = 0, checkFreq = 0 }) {

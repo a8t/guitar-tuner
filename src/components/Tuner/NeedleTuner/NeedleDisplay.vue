@@ -1,6 +1,6 @@
 <template>
-  <svg xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 207.86 126.25">
+  <svg :class="svgClass"
+    viewBox="-2 -2 211.86 138.25">
     <line x1="103.93"
       y1="12.58"
       x2="103.93"
@@ -70,7 +70,7 @@
       x2="0.01"
       y2="105.75" />
     <line id="needle"
-      :class="{hidden: !isMicListening}"
+      :class="needleClass"
       :transform="needleTransform"
       x1="103.93"
       y1="105.53"
@@ -78,7 +78,7 @@
       y2="18.82" />
 
     <text x="50%"
-      y="100%"
+      y="95%"
       text-anchor="middle">
       {{nearestNote}}
     </text>
@@ -95,25 +95,44 @@ export default {
   },
   computed: {
     needleTransform: function() {
-      const deg = 90 * this.distanceInCents / 50
+      const deg = 90 * (this.distanceInCents || 0) / 50
       return `rotate(${deg} 103.93 105.53)`
+    },
+    needleClass: function() {
+      return {
+        'is-hidden': !this.isMicListening,
+        'no-note-detected': isNaN(this.distanceInCents),
+      }
+    },
+    svgClass: function() {
+      return { 'is-disabled': !this.isMicListening }
     },
   },
 }
 </script>
 
 <style lang="scss" scoped>
-svg > line {
-  fill: none;
-  stroke: #231f20;
-  stroke-miterlimit: 10;
-  stroke-linecap: round;
+svg {
+  > line {
+    fill: none;
+    stroke: #231f20;
+    stroke-miterlimit: 10;
+    stroke-linecap: round;
+    stroke-width: 1.5px;
+  }
+  &.is-disabled > line:not(#needle) {
+    stroke: var(--disabled);
+  }
 }
 
 #needle {
   transition: transform 0.1s;
-  &.hidden {
+  &.is-hidden {
     display: none;
+  }
+
+  &.no-note-detected {
+    stroke: var(--disabled);
   }
 }
 </style>
