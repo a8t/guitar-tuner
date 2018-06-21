@@ -1,7 +1,8 @@
 <template>
   <div class="strobe-tuner--container">
     <div class="strobe-tuner">
-
+      <sharp-flat-indicator class="sharp-flat-indicator"
+        v-bind="{distanceInCents, isMicListening}"></sharp-flat-indicator>
       <router-view class="strobe-display"
         v-bind="{nearestNote, distanceInCents, isMicListening, toggleMicrophone}"
       />
@@ -28,6 +29,7 @@
 <script>
 import tunerMixin from '@/components/mixins/tunerMixin'
 import RecordingIndicator from '@/components/shared/RecordingIndicator'
+import SharpFlatIndicator from '@/components/Tuner/sharp-flat-indicator'
 
 import { Button } from 'at-ui'
 
@@ -37,6 +39,7 @@ export default {
   components: {
     Button,
     RecordingIndicator,
+    SharpFlatIndicator,
   },
   mounted() {
     this.startStopListener = event => {
@@ -122,5 +125,9 @@ export default {
   position: absolute;
   top: 20px;
   right: 20px;
+}
+
+.sharp-flat-indicator {
+  margin-bottom: 20px;
 }
 </style>
