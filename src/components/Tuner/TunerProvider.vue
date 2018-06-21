@@ -6,8 +6,6 @@
       <router-view class="strobe-display"
         v-bind="{nearestNote, distanceInCents, isMicListening, toggleMicrophone}"
       />
-      <recording-indicator class="needle-recording-indicator"
-        :on="isMicListening" />
       <div>
         <Button id="toggleButton"
           type="primary"
@@ -81,22 +79,21 @@ export default {
 
 .strobe-tuner {
   width: 100vw;
-  background: var(--primary-bg);
-  padding: 10px;
+  padding: 40px;
   border-radius: 4px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: white;
+  box-shadow: 5px 5px 24px 0px rgba(0, 0, 0, 0.25);
 
   @media screen and (min-width: 900px) and (min-height: 650px) {
     & {
       position: relative;
       width: 80vw;
       max-width: 800px;
-      background: white;
       padding: 40px;
       border-radius: 4px;
-      box-shadow: 5px 5px 32px 0px rgba(0, 0, 0, 0.75);
     }
   }
 }
@@ -119,12 +116,6 @@ export default {
 .mic-toggle--secondary {
   font-size: 18px;
   margin-top: 5px;
-}
-
-.needle-recording-indicator {
-  position: absolute;
-  top: 20px;
-  right: 20px;
 }
 
 .sharp-flat-indicator {
