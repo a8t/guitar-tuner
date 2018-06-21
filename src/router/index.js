@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import TunerPage from '@/pages/TunerPage'
-import NeedleTuner from '@/components/Tuner/NeedleTuner/NeedleTuner'
-import StrobeTuner from '@/components/Tuner/StrobeTuner/StrobeTuner'
+import NeedleDisplay from '@/components/Tuner/NeedleTuner/NeedleDisplay'
+import StrobeDisplay from '@/components/Tuner/StrobeTuner/StrobeDisplay'
 
 Vue.use(Router)
 
@@ -19,11 +19,11 @@ export default new Router({
         },
         {
           path: 'needle-tuner',
-          component: NeedleTuner,
+          component: NeedleDisplay,
         },
         {
           path: 'strobe-tuner',
-          component: StrobeTuner,
+          component: StrobeDisplay,
         },
         {
           path: '*',
