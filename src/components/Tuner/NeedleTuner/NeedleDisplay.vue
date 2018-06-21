@@ -1,6 +1,6 @@
 <template>
   <svg xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 207.86 106.25">
+    viewBox="0 0 207.86 126.25">
     <line x1="103.93"
       y1="12.58"
       x2="103.93"
@@ -76,6 +76,12 @@
       y1="105.53"
       x2="103.93"
       y2="18.82" />
+
+    <text x="50%"
+      y="100%"
+      text-anchor="middle">
+      {{nearestNote}}
+    </text>
   </svg>
 </template>
 
@@ -83,6 +89,7 @@
 export default {
   name: 'NeedleDisplay',
   props: {
+    nearestNote: String,
     distanceInCents: Number,
     isMicListening: Boolean,
   },

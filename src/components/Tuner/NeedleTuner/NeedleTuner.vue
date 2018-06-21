@@ -2,11 +2,8 @@
   <div class="container">
 
     <div class="needle-tuner">
-      <NeedleDisplay class="needle-display"
-        v-bind="{distanceInCents, isMicListening}" />
-      <div class="note-display">
-        {{nearestNote}}
-      </div>
+      <needle-display class="needle-display"
+        v-bind="{distanceInCents, isMicListening, nearestNote}" />
 
       <recording-indicator class="needle-recording-indicator"
         :on="isMicListening" />
