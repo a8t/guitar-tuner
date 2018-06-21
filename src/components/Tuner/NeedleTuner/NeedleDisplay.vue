@@ -104,7 +104,7 @@ svg > line {
 }
 
 #needle {
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.1s;
   &.hidden {
     display: none;
   }
