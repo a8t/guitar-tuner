@@ -21,7 +21,7 @@ export default {
 
 <style scoped>
 .tunerpage-root {
-  min-height: 600px;
+  min-height: 800px;
   height: calc(100vh - var(--header-height) * 1px);
   display: flex;
   flex-direction: column;

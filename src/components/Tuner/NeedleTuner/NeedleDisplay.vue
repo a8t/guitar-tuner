@@ -81,7 +81,7 @@
     <text x="50%"
       y="95%"
       text-anchor="middle">
-      {{nearestNote}}
+      {{isMicListening ? nearestNote : "Tuner Off"}}
     </text>
   </svg>
 </template>
@@ -116,13 +116,16 @@ export default {
 #needleDisplayContainer {
   > line {
     fill: none;
-    stroke: #231f20;
+    stroke: rgba(0, 0, 0, 0.5);
     stroke-miterlimit: 10;
     stroke-linecap: round;
     stroke-width: 1.5px;
   }
-  &.is-disabled > line:not(#needle) {
-    stroke: var(--disabled);
+  &.is-disabled {
+    > line:not(#needle) {
+      stroke: var(--disabled);
+    }
+    fill: var(--disabled);
   }
   > text {
     font-size: 18px;

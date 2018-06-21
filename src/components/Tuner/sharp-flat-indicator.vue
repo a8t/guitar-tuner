@@ -82,6 +82,7 @@ export default {
 #sharpFlatContainer {
   height: 100px;
   max-width: 100vw;
+  min-height: 60px;
   circle,
   .indicator-icon {
     stroke: none;

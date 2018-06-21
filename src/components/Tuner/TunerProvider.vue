@@ -1,9 +1,9 @@
 <template>
-  <div class="strobe-tuner--container">
-    <div class="strobe-tuner">
+  <div class="tuner-container">
+    <div class="tuner-body">
       <sharp-flat-indicator class="sharp-flat-indicator"
         v-bind="{distanceInCents, isMicListening}"></sharp-flat-indicator>
-      <router-view class="strobe-display"
+      <router-view class="tuner-display"
         v-bind="{nearestNote, distanceInCents, isMicListening, toggleMicrophone}"
       />
       <div>
@@ -67,7 +67,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.strobe-tuner--container {
+.tuner-container {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -77,8 +77,9 @@ export default {
   padding: 20px;
 }
 
-.strobe-tuner {
+.tuner-body {
   width: 100vw;
+  min-height: 500px;
   padding: 40px;
   border-radius: 4px;
   display: flex;
@@ -98,11 +99,12 @@ export default {
   }
 }
 
-.strobe-display {
+.tuner-display {
   width: 100%;
-  max-width: 600px;
+  max-width: 700px;
   height: 100%;
-  max-height: 30vh;
+  min-height: 200px;
+  max-height: 35vh;
 }
 
 .mic-toggle {

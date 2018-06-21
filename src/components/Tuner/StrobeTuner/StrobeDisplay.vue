@@ -10,8 +10,9 @@
       r="45" />
     <text x="50%"
       y="55%"
+      class="strobe-display--label"
       text-anchor="middle">
-      {{nearestNote}}
+      {{isMicListening ? nearestNote : "Tuner Off"}}
     </text>
   </svg>
 </template>
@@ -69,9 +70,13 @@ export default {
   }
 }
 
+#strobeDisplayContainer:not(.is-enabled) > .strobe-display--label {
+  fill: var(--disabled);
+}
+
 #strobeDisplayCircle {
   transition: stroke-dashoffset 0.000002s;
-  stroke: var(--high-contrast-bg);
+  stroke: rgba(0, 0, 0, 0.5);
   stroke-linecap: round;
 
   &.is-disabled {
