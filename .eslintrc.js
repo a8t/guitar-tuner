@@ -10,13 +10,9 @@ module.exports = {
   },
   // https://github.com/vuejs/eslint-plugin-vue#priority-a-essential-error-prevention
   // consider switching to `plugin:vue/strongly-recommended` or `plugin:vue/recommended` for stricter rules.
-  extends: [
-    'plugin:vue/essential',
-    'airbnb-base',
-    'plugin:prettier/recommended',
-  ],
+  extends: ['plugin:vue/essential', 'airbnb-base'],
   // required to lint *.vue files
-  plugins: ['vue', 'prettier'],
+  plugins: ['vue'],
   // check if imports actually resolve
   settings: {
     'import/resolver': {
@@ -72,8 +68,8 @@ module.exports = {
     'object-shorthand': 'off',
     'func-names': ['error', 'as-needed'],
     'arrow-parens': ['error', 'as-needed'],
-    'prettier/prettier': 'error',
     'arrow-body-style': 0,
+    semi: ['error', 'never'],
     indent: ['error', 2],
   },
 }
