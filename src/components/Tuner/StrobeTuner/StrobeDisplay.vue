@@ -1,7 +1,7 @@
 <template>
-  <svg viewBox="0 0 100 100">
+  <svg viewBox="0 0 100 100"
+    :class="svgClass">
     <circle fill="none"
-      stroke-width="2"
       id="circle"
       cx="50%"
       cy="50%"
@@ -39,8 +39,14 @@ export default {
   computed: {
     classObj: function() {
       return {
-        tuned: this.distanceInCents < 2 && this.distanceInCents > -2,
-        disabled: !this.isMicListening,
+        'is-tuned': this.nearestNote && this.distanceInCents < 2 && this.distanceInCents > -2,
+        'no-note-detected': !this.nearestNote,
+        'is-disabled': !this.isMicListening,
+      }
+    },
+    svgClass: function() {
+      return {
+        'is-enabled': this.isMicListening,
       }
     },
   },
@@ -56,15 +62,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+svg.is-enabled {
+  #circle {
+    stroke-width: 3px;
+  }
+}
+
 #circle {
   transition: stroke-dashoffset 0.000002s;
   stroke: var(--high-contrast-bg);
+  stroke-linecap: round;
 
-  &.disabled {
+  &.is-disabled {
     stroke: var(--disabled) !important;
+    stroke-dashoffset: 0 !important;
   }
-  &.tuned {
+  &.is-tuned {
     stroke: green;
+  }
+  &.no-note-detected {
+    stroke: rgba(0, 0, 0, 0.6);
   }
 }
 </style>
