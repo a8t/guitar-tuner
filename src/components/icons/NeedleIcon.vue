@@ -1,7 +1,10 @@
 <template>
-  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-    width="32" height="32" viewBox="0 0 32 32" data-tags="barometer">
-    <g fill="#444" transform="scale(0.03125 0.03125)">
+  <svg version="1.1"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    viewBox="0.5 -2 32 32"
+    data-tags="barometer">
+    <g transform="scale(0.03125 0.03125)">
       <path d="M572.538 685.534c21.387 14.36 35.462 38.769 35.462
               66.466 0 44.183-35.817 80-80 80s-80-35.817-80-80c0-27.697
               14.075-52.106 35.462-66.466l44.538-237.534 44.538 237.534zM936.847
@@ -37,11 +40,7 @@
 
 <style scoped>
 svg {
-  width: 50px;
-  height: 50px;
-}
-
-.router-link-active > svg * {
-  fill: var(--primary);
+  width: 55px;
+  height: 55px;
 }
 </style>

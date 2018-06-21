@@ -9,12 +9,12 @@
     <div class="tuner-modes">
       <tuner-mode url="/tuner/needle-tuner"
         label="Needle">
-        <Needle/>
+        <Needle class="footer-icon" />
       </tuner-mode>
 
       <tuner-mode url="/tuner/strobe-tuner"
         label="Strobe">
-        <Strobe/>
+        <Strobe class="footer-icon" />
       </tuner-mode>
     </div>
 
@@ -77,9 +77,17 @@ footer {
   width: 100%;
   justify-content: center;
   align-items: flex-end;
+  color: var(--light-fg);
 
   & > * {
     margin: 10px;
+  }
+}
+
+.footer-icon {
+  fill: var(--disabled);
+  .router-link-active & {
+    fill: var(--primary);
   }
 }
 </style>
