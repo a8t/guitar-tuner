@@ -1,8 +1,9 @@
 <template>
   <svg viewBox="0 0 100 100"
+    id="strobeDisplayContainer"
     :class="svgClass">
     <circle fill="none"
-      id="circle"
+      id="strobeDisplayCircle"
       cx="50%"
       cy="50%"
       :class="classObj"
@@ -27,7 +28,7 @@ export default {
     isMicListening: Boolean,
   },
   mounted() {
-    this.c = document.querySelector('#circle')
+    this.c = document.querySelector('#strobeDisplayCircle')
     this.length = this.c.getTotalLength()
     const numGaps = 8
     this.c.style.strokeDasharray = `${this.length / (2 * numGaps)} ${this.length / (2 * numGaps)}`
@@ -62,13 +63,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-svg.is-enabled {
-  #circle {
+#strobeDisplayContainer.is-enabled {
+  #strobeDisplayCircle {
     stroke-width: 3px;
   }
 }
 
-#circle {
+#strobeDisplayCircle {
   transition: stroke-dashoffset 0.000002s;
   stroke: var(--high-contrast-bg);
   stroke-linecap: round;

@@ -1,5 +1,6 @@
 <template>
-  <svg :class="svgClass"
+  <svg id="needleDisplayContainer"
+    :class="svgClass"
     viewBox="-2 -2 211.86 138.25">
     <line x1="103.93"
       y1="12.58"
@@ -112,7 +113,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-svg {
+#needleDisplayContainer {
   > line {
     fill: none;
     stroke: #231f20;
@@ -122,6 +123,9 @@ svg {
   }
   &.is-disabled > line:not(#needle) {
     stroke: var(--disabled);
+  }
+  > text {
+    font-size: 18px;
   }
 }
 
