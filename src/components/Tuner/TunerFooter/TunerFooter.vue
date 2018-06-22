@@ -1,23 +1,16 @@
 <template>
-  <footer>
-    <div class="footer-title">
-      <h3>
-        Tuner mode
-      </h3>
-    </div>
+  <footer class="tuner-modes--container">
+    <tuner-mode url="/tuner/needle-tuner"
+      label="Needle"
+      class="tuner-mode">
+      <Needle class="footer-icon" />
+    </tuner-mode>
 
-    <div class="tuner-modes">
-      <tuner-mode url="/tuner/needle-tuner"
-        label="Needle">
-        <Needle class="footer-icon" />
-      </tuner-mode>
-
-      <tuner-mode url="/tuner/strobe-tuner"
-        label="Strobe">
-        <Strobe class="footer-icon" />
-      </tuner-mode>
-    </div>
-
+    <tuner-mode url="/tuner/strobe-tuner"
+      label="Strobe"
+      class="tuner-mode">
+      <Strobe class="footer-icon" />
+    </tuner-mode>
   </footer>
 </template>
 
@@ -33,12 +26,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-footer {
-  --title-width: 100;
-  margin-top: auto;
-  position: relative;
-}
-
 .footer-title {
   margin-left: auto;
   margin-right: auto;
@@ -49,42 +36,54 @@ footer {
   color: #666;
 }
 
-.footer-title::before {
-  position: absolute;
-  width: calc(50vw - var(--title-width) * 0.5px - 10px);
-  content: '';
-  background: #999;
-  height: 2px;
-  position: absolute;
-  left: 0;
-  top: 10px;
-}
-
-.footer-title::after {
-  position: absolute;
-  width: calc(50vw - var(--title-width) * 0.5px - 10px);
-  content: '';
-  background: #999;
-  height: 2px;
-  position: absolute;
-  right: 0;
-  top: 10px;
-}
-
-.tuner-modes {
-  margin: 20px 0;
+.tuner-modes--container {
+  width: 100vw;
+  margin-top: auto;
+  position: relative;
+  border-top: 2px solid rgba(0, 0, 0, 0.2);
   display: flex;
-  width: 100%;
   justify-content: center;
-  align-items: flex-end;
+  align-items: flex-start;
   color: var(--light-fg);
+  border-top: 2px solid;
+  border-image-source: linear-gradient(
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0, 0)
+  );
+  border-image-slice: 100% 2;
 
-  & > * {
-    margin: 10px;
+  @supports (display: grid) {
+    grid-area: modes;
+    @media screen and (min-width: 800px) {
+      margin: 0;
+      width: calc(var(--modes-width) * 1px);
+
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      border-top: none;
+
+      border-right: 1px solid;
+      border-image-slice: 1 100%;
+    }
   }
 }
 
-.footer-icon {
+.tuner-mode {
+  padding: 10px 30px;
+  @supports (display: grid) {
+    @media screen and (min-width: 800px) {
+      width: calc(var(--modes-width) * 1px);
+      padding: 20px 0;
+      border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+    }
+  }
+}
+
+.footer-icon > svg {
   fill: var(--disabled);
   .router-link-active & {
     fill: var(--primary);

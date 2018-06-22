@@ -1,6 +1,6 @@
 :root {
   --primary: #6190e8;
-  --primary-bg: #f1eff3;
+  --primary-bg: linear-gradient(45deg, #93a5cf 0%, #e4efe9 100%);
   --low-contrast-bg: #dee3e5;
   --high-contrast-bg: #323557;
   --light-fg: #545a5e;

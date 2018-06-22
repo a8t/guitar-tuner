@@ -1,5 +1,6 @@
 <template>
   <div class="tuner-container">
+    <div class="tuner-header">WebTuner</div>
     <div class="tuner-body">
       <sharp-flat-indicator class="sharp-flat-indicator"
         v-bind="{distanceInCents, isMicListening}"></sharp-flat-indicator>
@@ -10,7 +11,7 @@
         <button id="toggleButton"
           type="primary"
           size="large"
-          class="mic-toggle"
+          :class="{'mic-toggle': true, 'is-listening': isMicListening}"
           @mousedown="handleToggleMouseDown"
           @mouseup="handleToggleMouseUp">
           <p class="mic-toggle--primary">
@@ -22,6 +23,7 @@
         </p>
       </div>
     </div>
+    <tuner-footer/>
   </div>
 </template>
 
@@ -29,6 +31,7 @@
 import tunerMixin from '@/components/mixins/tunerMixin'
 import RecordingIndicator from '@/components/shared/RecordingIndicator'
 import SharpFlatIndicator from '@/components/Tuner/sharp-flat-indicator'
+import TunerFooter from '@/components/Tuner/TunerFooter/TunerFooter'
 
 export default {
   name: 'TunerProvider',
@@ -36,6 +39,7 @@ export default {
   components: {
     RecordingIndicator,
     SharpFlatIndicator,
+    TunerFooter,
   },
   mounted() {
     const toggle = document.querySelector('#toggleButton')
@@ -82,62 +86,97 @@ export default {
 
 <style lang="scss" scoped>
 .tuner-container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 80%;
-  padding: 20px;
-}
-
-.tuner-body {
+  grid-area: tuner;
   width: 100vw;
-  min-height: 500px;
-  padding: 40px;
+  height: calc(100vh);
+  min-height: 600px;
   border-radius: 4px;
   display: flex;
   flex-direction: column;
   align-items: center;
   background: white;
   box-shadow: 5px 5px 24px 0px rgba(0, 0, 0, 0.25);
+  position: relative;
 
-  @media screen and (min-width: 900px) and (min-height: 650px) {
-    & {
-      position: relative;
-      width: 80vw;
-      max-width: 800px;
-      padding: 40px;
-      border-radius: 4px;
+  @supports (display: grid) {
+    @media screen and (min-width: 800px) {
+      height: calc(100vh - var(--header-height) * 1px);
+
+      max-width: 80vw;
+      display: grid;
+      min-height: unset;
+      height: 100%;
+      --modes-width: 100;
+      grid-template-areas:
+        'modes tuner-header'
+        'modes tuner-body';
+      grid-template-columns: calc(var(--modes-width) * 1px) 1fr;
+      grid-template-rows:
+        calc(var(--header-height) * 1px)
+        1fr;
+      overflow: scroll;
     }
   }
 }
 
-.tuner-display {
+.tuner-header {
   width: 100%;
+  grid-area: tuner-header;
+  z-index: 123;
+  color: white;
+  font-size: 32px;
+  background: var(--primary);
+  height: calc(var(--header-height) * 1px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 5px 5px 24px 0px rgba(0, 0, 0, 0.25);
+}
+
+.tuner-body {
+  grid-area: tuner-body;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  margin: auto;
+  min-height: 400px;
+}
+
+.tuner-display {
+  width: 80vw;
+  @media screen and (min-width: 800px) {
+    width: 50vw;
+  }
   max-width: 700px;
   height: 100%;
-  min-height: 200px;
+  min-height: 400px;
   max-height: 35vh;
 }
 
 .mic-toggle {
-  background: var(--interactive-0);
+  background: rgba(38, 170, 137, 0.6);
   width: 120px;
   border-radius: 4px;
   padding: 8px 16px;
   margin-top: 30px;
-  &.hover,
-  &:hover {
-    background: var(--interactive-plus1);
-  }
   &.active,
   &:active {
-    background: var(--interactive-minus1);
+    background: rgba(38, 170, 137, 0.8);
+  }
+
+  &.is-listening {
+    color: white;
+    background: rgba(216, 67, 67, 0.722);
+
+    &.active,
+    &:active {
+      background: rgba(216, 67, 67, 0.922);
+    }
   }
   p {
-    font-size: 24px;
     color: white;
+
+    font-size: 24px;
   }
 }
 

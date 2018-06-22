@@ -81,7 +81,7 @@
     <text x="50%"
       y="95%"
       text-anchor="middle">
-      {{isMicListening ? nearestNote : "Tuner Off"}}
+      {{isMicListening ? nearestNote : "--"}}
     </text>
   </svg>
 </template>

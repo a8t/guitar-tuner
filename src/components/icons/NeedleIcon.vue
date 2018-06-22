@@ -42,5 +42,10 @@
 svg {
   width: 55px;
   height: 55px;
+  fill: var(--disabled);
+}
+
+.router-link-active svg * {
+  fill: var(--primary);
 }
 </style>

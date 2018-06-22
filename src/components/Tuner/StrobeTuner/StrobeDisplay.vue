@@ -12,7 +12,7 @@
       y="55%"
       class="strobe-display--label"
       text-anchor="middle">
-      {{isMicListening ? nearestNote : "Tuner Off"}}
+      {{isMicListening ? nearestNote : "--"}}
     </text>
   </svg>
 </template>

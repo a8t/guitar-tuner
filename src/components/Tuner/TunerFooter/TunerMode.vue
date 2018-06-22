@@ -1,13 +1,12 @@
 <template>
-  <div class="mode-container">
-    <router-link :to="url"
-      replace>
-      <slot></slot>
-      <p class="label">
-        {{label}}
-      </p>
-    </router-link>
-  </div>
+  <router-link :to="url"
+    class="mode-container"
+    replace>
+    <slot></slot>
+    <p class="label">
+      {{label}}
+    </p>
+  </router-link>
 </template>
 
 <script>
@@ -23,6 +22,11 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  &.router-link-active {
+    fill: var(--primary);
+    background: rgba(119, 173, 255, 0.1);
+    box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.15);
+  }
 }
 
 .label {
