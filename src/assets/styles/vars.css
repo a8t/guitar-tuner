@@ -6,11 +6,9 @@
   --light-fg: #545a5e;
   --error: #c63162;
   --disabled: #bcbbbc;
-  --interactive-minus1: #1a5378;
-  --interactive-minus2: #236595;
-  --interactive-0: #3194cf;
-  --interactive-plus1: #6db1e0;
-  --interactive-plus2: #8fc6eb;
+  --interactive-minus1: #5983cf;
+  --interactive-0: var(--primary);
+  --interactive-plus1: #7aa3e9;
 
   --header-height: 50;
 }

@@ -7,15 +7,16 @@
         v-bind="{nearestNote, distanceInCents, isMicListening, toggleMicrophone}"
       />
       <div>
-        <Button id="toggleButton"
+        <button id="toggleButton"
           type="primary"
           size="large"
           class="mic-toggle"
-          @click="handleToggleClick">
+          @mousedown="handleToggleMouseDown"
+          @mouseup="handleToggleMouseUp">
           <p class="mic-toggle--primary">
             {{isMicListening ? 'Stop': 'Start'}}
           </p>
-        </Button>
+        </button>
         <p class="mic-toggle--secondary">
           (or press spacebar)
         </p>
@@ -29,28 +30,39 @@ import tunerMixin from '@/components/mixins/tunerMixin'
 import RecordingIndicator from '@/components/shared/RecordingIndicator'
 import SharpFlatIndicator from '@/components/Tuner/sharp-flat-indicator'
 
-import { Button } from 'at-ui'
-
 export default {
   name: 'TunerProvider',
   mixins: [tunerMixin],
   components: {
-    Button,
     RecordingIndicator,
     SharpFlatIndicator,
   },
   mounted() {
-    this.startStopListener = event => {
-      if (event.key === 'Space' || event.code === 'Space') {
+    const toggle = document.querySelector('#toggleButton')
+    this.keyDownListener = event => {
+      if (event.key === 'Space' || (event.code === 'Space' && !event.repeat)) {
         event.preventDefault()
+        toggle.classList.add('active')
+      }
+    }
+    this.keyUpListener = event => {
+      if (event.key === 'Space' || (event.code === 'Space' && !event.repeat)) {
+        event.preventDefault()
+        event.stopPropagation()
+
+        toggle.classList.remove('active')
         this.toggleMicrophone()
       }
     }
 
-    window.addEventListener('keypress', this.startStopListener)
+    toggle.addEventListener('keydown', this.keyDownListener)
+    toggle.addEventListener('keyup', this.keyUpListener)
+    window.addEventListener('keydown', this.keyDownListener)
+    window.addEventListener('keyup', this.keyUpListener)
   },
   destroyed() {
-    window.removeEventListener('keypress', this.startStopListener)
+    window.removeEventListener('keydown', this.keyDownListener)
+    window.removeEventListener('keyup', this.keyUpListener)
   },
   computed: {
     needleTransform: function() {
@@ -58,8 +70,10 @@ export default {
     },
   },
   methods: {
-    handleToggleClick: function(e) {
+    handleToggleMouseDown: function(e) {
       e.currentTarget.blur()
+    },
+    handleToggleMouseUp: function(e) {
       this.toggleMicrophone()
     },
   },
@@ -108,7 +122,19 @@ export default {
 }
 
 .mic-toggle {
+  background: var(--interactive-0);
+  width: 120px;
+  border-radius: 4px;
+  padding: 8px 16px;
   margin-top: 30px;
+  &.hover,
+  &:hover {
+    background: var(--interactive-plus1);
+  }
+  &.active,
+  &:active {
+    background: var(--interactive-minus1);
+  }
   p {
     font-size: 24px;
     color: white;
