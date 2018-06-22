@@ -149,7 +149,6 @@ export default {
   }
   max-width: 700px;
   height: 100%;
-  min-height: 400px;
   max-height: 35vh;
 }
 
