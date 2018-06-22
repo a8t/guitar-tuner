@@ -29,7 +29,6 @@ export default {
 }
 
 .tuner-provider {
-  margin-top: var(--header-height) * 1px;
   height: 100%;
   z-index: 3;
 }

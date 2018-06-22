@@ -18,7 +18,7 @@ import '@/assets/styles/vars.css'
 
 export default {
   name: 'App',
-  created: function() {
+  mounted: function() {
     window.scrollTo(0, 1)
   },
 }
@@ -37,7 +37,7 @@ body {
 }
 
 .main {
-  margin-top: 50px;
+  margin-top: calc(var(--header-height) * 1px);
 }
 
 .header {
@@ -45,11 +45,12 @@ body {
   background: var(--primary);
   position: fixed;
   top: 0;
-  height: 50px;
+  height: calc(var(--header-height) * 1px);
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 5px 5px 24px 0px rgba(0, 0, 0, 0.25);
 }
 
 .header-title {
