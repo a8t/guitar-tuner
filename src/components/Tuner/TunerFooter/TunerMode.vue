@@ -1,6 +1,7 @@
 <template>
   <div class="mode-container">
-    <router-link :to="url">
+    <router-link :to="url"
+      replace>
       <slot></slot>
       <p class="label">
         {{label}}
