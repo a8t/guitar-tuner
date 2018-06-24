@@ -139,7 +139,6 @@ export default {
   flex-direction: column;
   padding: 30px;
   margin: auto;
-  min-height: 400px;
 }
 
 .tuner-display {
@@ -149,6 +148,7 @@ export default {
   }
   max-width: 700px;
   height: 100%;
+  min-height: 200px;
   max-height: 35vh;
 }
 

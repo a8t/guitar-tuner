@@ -18,7 +18,7 @@ export default {
 
 <style lang="scss" scoped>
 .tunerpage-root {
-  height: 100vh;
+  min-height: 100vh;
   background: var(--primary-bg);
   display: flex;
   flex-direction: column;
