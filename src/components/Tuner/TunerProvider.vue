@@ -77,7 +77,7 @@ export default {
     handleToggleMouseDown: function(e) {
       e.currentTarget.blur()
     },
-    handleToggleMouseUp: function(e) {
+    handleToggleMouseUp: function() {
       this.toggleMicrophone()
     },
   },
