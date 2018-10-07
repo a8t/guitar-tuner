@@ -32,12 +32,15 @@ export default {
     isMicListening: Boolean,
   },
   mounted() {
-    // Take the SVG circle and turn it into a 'dotted line' circle
-    const circle = this.$refs.strobeDisplayCircle
-    this.length = circle.getTotalLength()
-    const numGaps = 8
-    circle.style.strokeDasharray = `${this.length / (2 * numGaps)} ${this.length / (2 * numGaps)}`
-    requestAnimationFrame(this.rotateCircle)
+    // Refs don't exist on first render, so we use $nextTick.
+    this.$nextTick(() => {
+      // Take the SVG circle and turn it into a 'dotted line' circle
+      const circle = this.$refs.strobeDisplayCircle
+      this.length = circle.getTotalLength()
+      const numGaps = 8
+      circle.style.strokeDasharray = `${this.length / (2 * numGaps)} ${this.length / (2 * numGaps)}`
+      requestAnimationFrame(this.rotateCircle)
+    })
   },
   destroyed() {
     cancelAnimationFrame(this.rotateCircle)

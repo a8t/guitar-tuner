@@ -13,6 +13,7 @@ export default {
     this.$_tunerMixin_stopUpdatingNoteAndDistance()
   },
   methods: {
+    // Toggles whether the microphone is listening and updating data
     toggleMicrophone: function() {
       if (this.isMicListening) {
         this.$_tunerMixin_stopUpdatingNoteAndDistance()
@@ -24,6 +25,8 @@ export default {
       this.isMicListening = !this.isMicListening
     },
 
+    // To be run on each tick. Determines the frequency we're hearing and
+    // updates the state with the nearest note + distance to it
     $_tunerMixin_updateNoteAndDistance: function() {
       const detectedFundamental = this.tuner.getDetectedFundamental()
       const [nearestNote, nearestNoteFreq] = TunerAudioContext.nearestNoteFromFreq(
@@ -41,6 +44,7 @@ export default {
       }
     },
 
+    // Shuts off the mic and stops frequency analysis
     $_tunerMixin_stopUpdatingNoteAndDistance: function() {
       requestAnimationFrame(() => {
         this.tuner.disconnectMicrophone()

@@ -1,10 +1,10 @@
 <template>
   <footer class="tuner-modes--container">
-    <TunerMode url="/tuner/needle-tuner"
+    <TunerFooterMode url="/tuner/needle-tuner"
       label="Needle"
       class="tuner-mode">
       <Needle class="footer-icon" />
-    </TunerMode>
+    </TunerFooterMode>
 
     <TunerFooterMode url="/tuner/strobe-tuner"
       label="Strobe"
