@@ -10,15 +10,25 @@ export default {
     }
   },
   destroyed() {
-    this.stopUpdatingNoteAndDistance()
+    this.$_tunerMixin_stopUpdatingNoteAndDistance()
   },
   methods: {
-    updateNoteAndDistance: function() {
+    toggleMicrophone: function() {
+      if (this.isMicListening) {
+        this.$_tunerMixin_stopUpdatingNoteAndDistance()
+      } else {
+        requestAnimationFrame(this.$_tunerMixin_updateNoteAndDistance)
+        this.tuner.connectMicrophone()
+      }
+
+      this.isMicListening = !this.isMicListening
+    },
+
+    $_tunerMixin_updateNoteAndDistance: function() {
       const detectedFundamental = this.tuner.getDetectedFundamental()
-      const [
-        nearestNote,
-        nearestNoteFreq,
-      ] = TunerAudioContext.nearestNoteFromFreq(detectedFundamental)
+      const [nearestNote, nearestNoteFreq] = TunerAudioContext.nearestNoteFromFreq(
+        detectedFundamental,
+      )
 
       this.nearestNote = nearestNote.replace(/[0-9]/g, '')
       this.distanceInCents = TunerAudioContext.distanceInCents({
@@ -27,22 +37,11 @@ export default {
       })
 
       if (this.isMicListening) {
-        requestAnimationFrame(this.updateNoteAndDistance)
+        requestAnimationFrame(this.$_tunerMixin_updateNoteAndDistance)
       }
     },
 
-    toggleMicrophone: function() {
-      if (this.isMicListening) {
-        this.stopUpdatingNoteAndDistance()
-      } else {
-        requestAnimationFrame(this.updateNoteAndDistance)
-        this.tuner.connectMicrophone()
-      }
-
-      this.isMicListening = !this.isMicListening
-    },
-
-    stopUpdatingNoteAndDistance: function() {
+    $_tunerMixin_stopUpdatingNoteAndDistance: function() {
       requestAnimationFrame(() => {
         this.tuner.disconnectMicrophone()
         this.distanceInCents = 0
