@@ -13,8 +13,7 @@
       cx="10%"
       cy="80%"
       r="3"
-      :class="{'is-lit': isMicListening && distanceInCents < -tunedDistance}"
-    />
+      :class="{'is-lit': isMicListening && distanceInCents < -tunedDistance}" />
 
     <svg width="15%"
       class="indicator-icon"
@@ -23,8 +22,7 @@
       viewBox="0 0 155.04 284.94">
       <!-- eslint-disable -->
       <path transform="translate(-73.38 -8.51)"
-        d="M226.69,146.12L153,10.28a2.43,2.43,0,0,0-4.27,0L75.11,146.12a10.2,10.2,0,0,0,0,9.73l73.65,135.84a2.43,2.43,0,0,0,4.27,0l73.65-135.84A10.2,10.2,0,0,0,226.69,146.12Zm-37.22,9.73L153,223a2.43,2.43,0,0,1-4.27,0l-36.43-67.19a10.2,10.2,0,0,1,0-9.73l36.43-67.19a2.43,2.43,0,0,1,4.27,0l36.43,67.19A10.2,10.2,0,0,1,189.47,155.84Z"
-      />
+        d="M226.69,146.12L153,10.28a2.43,2.43,0,0,0-4.27,0L75.11,146.12a10.2,10.2,0,0,0,0,9.73l73.65,135.84a2.43,2.43,0,0,0,4.27,0l73.65-135.84A10.2,10.2,0,0,0,226.69,146.12Zm-37.22,9.73L153,223a2.43,2.43,0,0,1-4.27,0l-36.43-67.19a10.2,10.2,0,0,1,0-9.73l36.43-67.19a2.43,2.43,0,0,1,4.27,0l36.43,67.19A10.2,10.2,0,0,1,189.47,155.84Z" />
     </svg>
     <!-- eslint-enable -->
 
@@ -56,7 +54,7 @@ import SharpIcon from '@/components/icons/SharpIcon'
 import FlatIcon from '@/components/icons/FlatIcon'
 
 export default {
-  name: 'sharp-flat-indicator',
+  name: 'SharpFlatIindicator',
   components: {
     SharpIcon,
     FlatIcon,
