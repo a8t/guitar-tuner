@@ -5,15 +5,16 @@
       <sharp-flat-indicator class="sharp-flat-indicator"
         v-bind="{distanceInCents, isMicListening}"></sharp-flat-indicator>
       <router-view class="tuner-display"
-        v-bind="{nearestNote, distanceInCents, isMicListening, toggleMicrophone}"
-      />
+        v-bind="{nearestNote, distanceInCents, isMicListening, toggleMicrophone}" />
       <div>
         <button id="toggleButton"
           type="primary"
           size="large"
-          :class="{'mic-toggle': true, 'is-listening': isMicListening}"
+          :class="{'mic-toggle': true, 'is-listening': isMicListening, 'active': isButtonActive}"
           @mousedown="handleToggleMouseDown"
-          @mouseup="handleToggleMouseUp">
+          @mouseup="handleToggleMouseUp"
+          @keydown="handleKeydown"
+          @keyup="handleKeyup">
           <p class="mic-toggle--primary">
             {{isMicListening ? 'Stop': 'Start'}}
           </p>
@@ -23,13 +24,12 @@
         </p>
       </div>
     </div>
-    <tuner-footer/>
+    <tuner-footer />
   </div>
 </template>
 
 <script>
 import tunerMixin from '@/components/mixins/tunerMixin'
-import RecordingIndicator from '@/components/shared/RecordingIndicator'
 import SharpFlatIndicator from '@/components/Tuner/sharp-flat-indicator'
 import TunerFooter from '@/components/Tuner/TunerFooter/TunerFooter'
 
@@ -37,41 +37,21 @@ export default {
   name: 'TunerProvider',
   mixins: [tunerMixin],
   components: {
-    RecordingIndicator,
     SharpFlatIndicator,
     TunerFooter,
   },
+  data: function() {
+    return {
+      isButtonActive: false,
+    }
+  },
   mounted() {
-    const toggle = document.querySelector('#toggleButton')
-    this.keyDownListener = event => {
-      if (event.key === 'Space' || (event.code === 'Space' && !event.repeat)) {
-        event.preventDefault()
-        toggle.classList.add('active')
-      }
-    }
-    this.keyUpListener = event => {
-      if (event.key === 'Space' || (event.code === 'Space' && !event.repeat)) {
-        event.preventDefault()
-        event.stopPropagation()
-
-        toggle.classList.remove('active')
-        this.toggleMicrophone()
-      }
-    }
-
-    toggle.addEventListener('keydown', this.keyDownListener)
-    toggle.addEventListener('keyup', this.keyUpListener)
-    window.addEventListener('keydown', this.keyDownListener)
-    window.addEventListener('keyup', this.keyUpListener)
+    window.addEventListener('keydown', this.handleKeydown)
+    window.addEventListener('keyup', this.handleKeyup)
   },
   destroyed() {
-    window.removeEventListener('keydown', this.keyDownListener)
-    window.removeEventListener('keyup', this.keyUpListener)
-  },
-  computed: {
-    needleTransform: function() {
-      return `rotate(${this.distanceInCents} 179.24 201.58)`
-    },
+    window.removeEventListener('keydown', this.handleKeydown)
+    window.removeEventListener('keyup', this.handleKeyup)
   },
   methods: {
     handleToggleMouseDown: function(e) {
@@ -79,6 +59,21 @@ export default {
     },
     handleToggleMouseUp: function() {
       this.toggleMicrophone()
+    },
+    handleKeydown: function(event) {
+      if (event.key === 'Space' || (event.code === 'Space' && !event.repeat)) {
+        event.preventDefault()
+        this.isButtonActive = true
+      }
+    },
+    handleKeyup: function(event) {
+      if (event.key === 'Space' || (event.code === 'Space' && !event.repeat)) {
+        event.preventDefault()
+        event.stopPropagation()
+
+        this.isButtonActive = false
+        this.toggleMicrophone()
+      }
     },
   },
 }
@@ -114,7 +109,6 @@ export default {
       grid-template-rows:
         calc(var(--header-height) * 1px)
         1fr;
-      overflow: scroll;
     }
   }
 }
