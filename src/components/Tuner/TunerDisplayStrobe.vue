@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  name: 'StrobeDisplay',
+  name: 'TunerDisplayStrobe',
   data() {
     return {}
   },

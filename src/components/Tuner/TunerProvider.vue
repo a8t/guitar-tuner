@@ -2,7 +2,7 @@
   <div class="tuner-container">
     <div class="tuner-header">WebTuner</div>
     <div class="tuner-body">
-      <SharpFlatIndicator class="sharp-flat-indicator"
+      <TunerSharpFlatIndicator class="sharp-flat-indicator"
         v-bind="{distanceInCents, isMicListening}" />
       <router-view class="tuner-display"
         v-bind="{nearestNote, distanceInCents, isMicListening, toggleMicrophone}" />
@@ -30,14 +30,14 @@
 
 <script>
 import tunerMixin from '@/components/mixins/tunerMixin'
-import SharpFlatIndicator from '@/components/Tuner/SharpFlatIndicator'
+import TunerSharpFlatIndicator from '@/components/Tuner/TunerSharpFlatIndicator'
 import TunerFooter from '@/components/Tuner/TunerFooter/TunerFooter'
 
 export default {
   name: 'TunerProvider',
   mixins: [tunerMixin],
   components: {
-    SharpFlatIndicator,
+    TunerSharpFlatIndicator,
     TunerFooter,
   },
   data: function() {

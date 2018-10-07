@@ -88,7 +88,7 @@
 
 <script>
 export default {
-  name: 'NeedleDisplay',
+  name: 'TunerDisplayNeedle',
   props: {
     nearestNote: String,
     distanceInCents: Number,

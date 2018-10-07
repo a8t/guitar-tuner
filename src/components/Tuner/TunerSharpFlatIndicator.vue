@@ -54,7 +54,7 @@ import SharpIcon from '@/components/icons/SharpIcon'
 import FlatIcon from '@/components/icons/FlatIcon'
 
 export default {
-  name: 'SharpFlatIindicator',
+  name: 'TunerSharpFlatIindicator',
   components: {
     SharpIcon,
     FlatIcon,

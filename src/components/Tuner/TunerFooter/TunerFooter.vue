@@ -6,22 +6,22 @@
       <Needle class="footer-icon" />
     </TunerMode>
 
-    <TunerMode url="/tuner/strobe-tuner"
+    <TunerFooterMode url="/tuner/strobe-tuner"
       label="Strobe"
       class="tuner-mode">
       <Strobe class="footer-icon" />
-    </TunerMode>
+    </TunerFooterMode>
   </footer>
 </template>
 
 <script>
 import Needle from '@/components/icons/NeedleIcon'
 import Strobe from '@/components/icons/StrobeIcon'
-import TunerMode from './TunerMode'
+import TunerFooterMode from './TunerFooterMode'
 
 export default {
   name: 'TunerFooter',
-  components: { TunerMode, Needle, Strobe },
+  components: { TunerFooterMode, Needle, Strobe },
 }
 </script>
 
