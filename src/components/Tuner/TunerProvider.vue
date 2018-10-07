@@ -58,6 +58,7 @@ export default {
       e.currentTarget.blur()
     },
     handleToggleMouseUp: function() {
+      // From tunerMixin
       this.toggleMicrophone()
     },
     handleKeydown: function(event) {

@@ -4,6 +4,7 @@
     :class="svgClass">
     <circle fill="none"
       id="strobeDisplayCircle"
+      ref="strobeDisplayCircle"
       cx="50%"
       cy="50%"
       :class="classObj"
@@ -21,7 +22,9 @@
 export default {
   name: 'TunerDisplayStrobe',
   data() {
-    return {}
+    return {
+      length: 0,
+    }
   },
   props: {
     nearestNote: String,
@@ -29,10 +32,11 @@ export default {
     isMicListening: Boolean,
   },
   mounted() {
-    this.c = document.querySelector('#strobeDisplayCircle')
-    this.length = this.c.getTotalLength()
+    // Take the SVG circle and turn it into a 'dotted line' circle
+    const circle = this.$refs.strobeDisplayCircle
+    this.length = circle.getTotalLength()
     const numGaps = 8
-    this.c.style.strokeDasharray = `${this.length / (2 * numGaps)} ${this.length / (2 * numGaps)}`
+    circle.style.strokeDasharray = `${this.length / (2 * numGaps)} ${this.length / (2 * numGaps)}`
     requestAnimationFrame(this.rotateCircle)
   },
   destroyed() {
@@ -54,9 +58,11 @@ export default {
   },
   methods: {
     rotateCircle: function() {
+      const circle = this.$refs.strobeDisplayCircle
       const difference = 0.3 * this.distanceInCents
-      this.c.style.strokeDashoffset =
-        (Number(this.c.style.strokeDashoffset) + difference) % this.length
+      circle.style.strokeDashoffset =
+        (Number(circle.style.strokeDashoffset) + difference) % this.length
+      this.$forceUpdate()
       requestAnimationFrame(this.rotateCircle)
     },
   },

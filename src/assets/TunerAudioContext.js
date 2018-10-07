@@ -64,10 +64,7 @@ export default class TunerAudioContext {
     const freqDomain = new Float32Array(bins)
     this.analyserNode.getFloatFrequencyData(freqDomain)
     const indexOfPeak = TunerAudioContext.getPeakIndex(freqDomain)
-    const inferredPeakIndex = TunerAudioContext.gaussianInterpolation(
-      indexOfPeak,
-      freqDomain,
-    )
+    const inferredPeakIndex = TunerAudioContext.gaussianInterpolation(indexOfPeak, freqDomain)
     return TunerAudioContext.getInferredPeakFreq(
       this.audioContext,
       freqDomain.length,
@@ -101,9 +98,7 @@ export default class TunerAudioContext {
     const compare = (prev, curr) => {
       return Math.abs(curr[1] - freq) < Math.abs(prev[1] - freq) ? curr : prev
     }
-    return isNaN(freq)
-      ? ['', NaN]
-      : Object.entries(noteToPitchJSON).reduce(compare)
+    return isNaN(freq) ? ['', NaN] : Object.entries(noteToPitchJSON).reduce(compare)
   }
 
   static distanceInCents({ referenceFreq = 0, checkFreq = 0 }) {

@@ -95,6 +95,7 @@ export default {
     isMicListening: Boolean,
   },
   computed: {
+    // Given to the 'needle' line to rotate it
     needleTransform: function() {
       const deg = 90 * (this.distanceInCents || 0) / 50
       return `rotate(${deg} 103.93 105.53)`

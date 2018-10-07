@@ -18,5 +18,4 @@
             6.87v38.39l35.55-6.89V127.48Z"
       transform="translate(-60.11 -6.11)" />
   </svg>
-
 </template>

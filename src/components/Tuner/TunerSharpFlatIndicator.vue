@@ -3,7 +3,7 @@
     :class="indicatorContainerClass"
     viewBox="0 0 50 30">
 
-    <sharp-icon viewBox="0 0 800 800"
+    <SharpIcon viewBox="0 0 800 800"
       class="indicator-icon"
       x="64%"
       y="20%" />
@@ -35,7 +35,7 @@
                             && distanceInCents <= tunedDistance
                             && distanceInCents >= -tunedDistance)}" />
 
-    <flat-icon viewBox="0 0 800 800"
+    <FlatIcon viewBox="0 0 800 800"
       class="indicator-icon"
       x="-15%"
       y="20%" />

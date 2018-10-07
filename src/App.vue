@@ -1,5 +1,5 @@
 <template>
-  <router-view/>
+  <router-view />
 </template>
 
 <script>
@@ -10,6 +10,7 @@ import '@/assets/styles/vars.css'
 export default {
   name: 'App',
   mounted: function() {
+    // This is a hack to get the address bar to auto-hide on Chrome Android.
     window.scrollTo(0, 1)
   },
 }
@@ -17,6 +18,7 @@ export default {
 
 <style>
 body {
+  /* This is also a hack to get the address bar to auto-hide on Chrome Android. */
   height: unset !important;
 
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
