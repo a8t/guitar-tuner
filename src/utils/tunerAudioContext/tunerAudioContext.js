@@ -1,5 +1,5 @@
-import noteToPitchJSON from '../assets/noteToPitch.json'
-import monkeypatch from '../assets/monkeypatch'
+import noteToPitchJSON from './noteToPitch.json'
+import monkeypatch from '../monkeypatch'
 
 export default class TunerAudioContext {
   constructor() {

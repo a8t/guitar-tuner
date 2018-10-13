@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import 'web-audio-test-api'
 import tunerMixin from '@/components/mixins/tunerMixin'
-import TunerAudioContext from '@/assets/TunerAudioContext'
+import TunerAudioContext from '@/utils/TunerAudioContext/TunerAudioContext'
 
 describe('Tuner mixin', () => {
   // Allow suspend and resume functionalities

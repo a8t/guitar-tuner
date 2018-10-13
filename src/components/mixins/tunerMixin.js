@@ -1,4 +1,4 @@
-import TunerAudioContext from '@/assets/TunerAudioContext'
+import TunerAudioContext from '@/utils/tunerAudioContext/tunerAudioContext'
 
 export default {
   data() {
