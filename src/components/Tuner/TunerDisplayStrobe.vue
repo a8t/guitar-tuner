@@ -1,4 +1,4 @@
-<template>
+  <template>
   <svg viewBox="0 0 100 100"
     id="strobeDisplayContainer"
     :class="svgClass">
@@ -32,13 +32,17 @@ export default {
     isMicListening: Boolean,
   },
   mounted() {
-    // Refs don't exist on first render, so we use $nextTick.
-    this.$nextTick(() => {
-      // Take the SVG circle and turn it into a 'dotted line' circle
-      const circle = this.$refs.strobeDisplayCircle
+    // Takes the SVG circle and turn it into a 'dashed line' circle
+    const makeCircleDashed = circleRef => {
+      const circle = circleRef
       this.length = circle.getTotalLength()
       const numGaps = 8
       circle.style.strokeDasharray = `${this.length / (2 * numGaps)} ${this.length / (2 * numGaps)}`
+    }
+
+    // Refs don't exist on first render, so we use $nextTick.
+    this.$nextTick(() => {
+      makeCircleDashed(this.$refs.strobeDisplayCircle)
       requestAnimationFrame(this.rotateCircle)
     })
   },
@@ -63,8 +67,10 @@ export default {
     rotateCircle: function() {
       const circle = this.$refs.strobeDisplayCircle
       const difference = 0.3 * this.distanceInCents
-      circle.style.strokeDashoffset =
-        (Number(circle.style.strokeDashoffset) + difference) % this.length
+      if (circle) {
+        circle.style.strokeDashoffset =
+          (Number(circle.style.strokeDashoffset) + difference) % this.length
+      }
       this.$forceUpdate()
       requestAnimationFrame(this.rotateCircle)
     },
