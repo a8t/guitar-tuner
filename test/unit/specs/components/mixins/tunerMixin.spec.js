@@ -26,19 +26,11 @@ describe('Tuner mixin', () => {
     })
   })
 
-  it('updates', () => {
-    expect(tc.nearestNote).toEqual('')
-    expect(tc.distanceInCents).toEqual(0)
-    tc.updateNoteAndDistance()
-    expect(tc.nearestNote).toEqual('C')
-    expect(tc.distanceInCents).toEqual(0)
-  })
-
   describe('stopUpdatingNoteAndDistance method', () => {
     it('resets data properties', done => {
       tc.distanceInCents = 50
       tc.nearestNote = 'A'
-      tc.stopUpdatingNoteAndDistance()
+      tc.$_tunerMixin_stopUpdatingNoteAndDistance()
       requestAnimationFrame(() => {
         expect(tc.distanceInCents).toEqual(0)
         expect(tc.nearestNote).toEqual('')
