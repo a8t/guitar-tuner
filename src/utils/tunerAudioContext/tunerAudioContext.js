@@ -1,11 +1,7 @@
 import noteToPitchJSON from './noteToPitch.json'
-import monkeypatch from '../monkeypatch'
 
 export default class TunerAudioContext {
   constructor() {
-    // monkeypatch returns true if any of the patches had to be applied
-    monkeypatch(window)
-
     this.audioContext = new AudioContext()
 
     this.filterNode = this.audioContext.createBiquadFilter()
