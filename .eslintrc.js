@@ -71,5 +71,6 @@ module.exports = {
     'arrow-body-style': 0,
     semi: ['error', 'never'],
     indent: ['error', 2],
+    'no-underscore-dangle': 'off',
   },
 }
